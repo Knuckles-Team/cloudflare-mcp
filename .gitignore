@@ -1,0 +1,2 @@
+# Spec status is computed at read time, never committed.
+specs/*/status.json

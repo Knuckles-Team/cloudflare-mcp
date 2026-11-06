@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=84.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cloudflare-mcp"
+version = "0.1.0"
+description = "MCP connector for Cloudflare."
+readme = "README.md"
+requires-python = ">=3.12, <3.15"
+dependencies = ["scion-sdk[mcp]>=0.8.2,<0.9"]
+
+[project.license]
+text = "MIT"
+
+# The SDK serves the declared connector: `cloudflare-mcp` starts the server.
+[project.scripts]
+cloudflare-mcp = "scion_sdk.cli:serve"
+
+# The one declared identity: the entry-point name is the fleet name.
+cloudflare-mcp-probe = "cloudflare_mcp.probe:main"
+
+[project.entry-points."scion_sdk.connector"]
+cloudflare-mcp = "cloudflare_mcp:connector"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["cloudflare_mcp*"]
+
+[tool.setuptools.package-data]
+cloudflare_mcp = ["prompts/*.json", "skills/**/*", "ontology/**/*"]

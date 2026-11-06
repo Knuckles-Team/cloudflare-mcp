@@ -1,0 +1,17 @@
+@prefix : <http://knuckles.team/kg#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Cloudflare classes. Every class extends a core class of the parent ontology
+# through rdfs:subClassOf. The pack never imports the parent ontology.
+
+:CloudflareOperation a owl:Class ;
+    rdfs:subClassOf :Concept ;
+    rdfs:label "Cloudflare Operation" ;
+    rdfs:comment "One Cloudflare provider operation served as a typed tool." .
+
+:cloudflareRelatedTo a owl:ObjectProperty ;
+    rdfs:label "Cloudflare related to" ;
+    rdfs:comment "Links a Cloudflare operation to any core concept it acts on." ;
+    rdfs:domain :CloudflareOperation ;
+    rdfs:range :Concept .
