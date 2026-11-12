@@ -11,5 +11,35 @@
   "serves": "CloudflareOperation",
   "instructions": {
     "core_directive": "Read first. Every write asks for approval; a refusal returns a typed code."
+  },
+  "agent": {
+    "kind": "operator",
+    "tools": [
+      "cloudflare_whoami",
+      "cloudflare_search",
+      "cloudflare_execute",
+      "cloudflare_docs"
+    ],
+    "skills": [
+      "cloudflare-operations"
+    ],
+    "data": {
+      "reads": [
+        "cloudflare-identity"
+      ],
+      "writes": []
+    },
+    "guardrails": {
+      "approval_required": [
+        "cloudflare_execute"
+      ],
+      "never": [
+        "Change a zone outside the allow list.",
+        "Send a credential in a tool argument."
+      ]
+    },
+    "outputs": [
+      "The endpoint used and the result, or the typed refusal code."
+    ]
   }
 }

@@ -200,6 +200,18 @@ The connector must serve at least as many tools as the upstream lists, each with
 
 1. **Given** the connector is installed, **When** a client uses it, **Then** served coverage holds as `CONN-CLOUDFLARE-MCP-R015` states.
 
+### User Story 17 - Declared upstream surface (Priority: P3)
+
+The connector must declare the tools the provider's MCP server publishes, so the surface gate checks them offline.
+
+**Why this priority**: the connector registers no tool without a live upstream.
+
+**Independent Test**: `tests/test_declared_surface.py::test_declared_upstream_tools_match_the_published_list`.
+
+**Acceptance Scenarios**:
+
+1. **Given** the connector is installed, **When** the surface gate runs offline, **Then** the declared surface holds as `CONN-CLOUDFLARE-MCP-R016` states.
+
 ### Edge Cases
 
 - An unset setting or credential returns a typed refusal and sends nothing to the provider.
@@ -245,3 +257,4 @@ behavior, version files, container files and gates; the SDK and pipelines own th
 | FR-014 | `CONN-CLOUDFLARE-MCP-R013` | plan.md#phase-1-design | T-014 |  |
 | FR-015 | `CONN-CLOUDFLARE-MCP-R014` | plan.md#phase-1-design | T-015 |  |
 | FR-016 | `CONN-CLOUDFLARE-MCP-R015` | plan.md#phase-1-design | T-016 |  |
+| FR-017 | `CONN-CLOUDFLARE-MCP-R016` | plan.md#phase-1-design | T-017 |  |

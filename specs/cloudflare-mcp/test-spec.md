@@ -20,6 +20,7 @@ Governing spec: [spec.md](spec.md).
 | T-014 | `CONN-CLOUDFLARE-MCP-R013` | Contract | `tests/integration/test_fleet_coverage.py::test_single_entry_passes_coverage_gate` | Fleet onboarding holds. |  |
 | T-015 | `CONN-CLOUDFLARE-MCP-R014` | Contract | `tests/integration/test_edge_journey_served.py::test_record_tls_and_mail_auth_journey` | Hot-path proof holds. |  |
 | T-016 | `CONN-CLOUDFLARE-MCP-R015` | Contract | `tests/test_coverage.py::test_served_tools_cover_upstream_with_typed_schemas` | Served coverage holds. |  |
+| T-017 | `CONN-CLOUDFLARE-MCP-R016` | Contract | `tests/test_declared_surface.py::test_declared_upstream_tools_match_the_published_list` | The declared upstream surface holds. |  |
 
 ## Negative and boundary cases
 
