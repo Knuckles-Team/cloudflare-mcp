@@ -34,7 +34,11 @@ UPSTREAM_TOOLS = (
         "cloudflare",
         "search",
         "Write JavaScript to query spec.paths and find endpoints",
-        {"type": "object", "properties": {"code": _CODE, "truncate": _TRUNCATE}, "required": ["code"]},
+        {
+            "type": "object",
+            "properties": {"code": _CODE, "truncate": _TRUNCATE},
+            "required": ["code"],
+        },
         False,
     ),
     UpstreamTool(
@@ -45,7 +49,10 @@ UPSTREAM_TOOLS = (
             "type": "object",
             "properties": {
                 "code": _CODE,
-                "account_id": {"type": "string", "description": "Account id; omitted with an account token."},
+                "account_id": {
+                    "type": "string",
+                    "description": "Account id; omitted with an account token.",
+                },
                 "truncate": _TRUNCATE,
             },
             "required": ["code"],
@@ -69,6 +76,43 @@ UPSTREAM_TOOLS = (
 )
 
 CONTRACTS = (
+    ToolUseContract(
+        "manage-cloudflare-namespaces",
+        (
+            ToolStep(
+                "registry_list_namespaces", (), ("namespace", "state", "tool_count")
+            ),
+            ToolStep(
+                "registry_activate",
+                ("namespace",),
+                ("namespace", "state", "changed"),
+                (
+                    Refusal(
+                        "UPSTREAM_NAMESPACE_UNKNOWN", "the namespace is not declared"
+                    ),
+                    Refusal("UPSTREAM_DISABLED", "the namespace is disabled"),
+                    Refusal(
+                        "UPSTREAM_ACTIVE_CAP",
+                        "the session reached its active namespace cap",
+                    ),
+                ),
+            ),
+            ToolStep(
+                "registry_status", (), ("namespace", "state", "tool_count", "version")
+            ),
+            ToolStep(
+                "registry_deactivate",
+                ("namespace",),
+                ("namespace", "state", "changed"),
+                (
+                    Refusal(
+                        "UPSTREAM_NAMESPACE_UNKNOWN", "the namespace is not declared"
+                    ),
+                ),
+            ),
+        ),
+        "List the provider namespaces, reveal one for the session, check its health, then hide it again.",
+    ),
     ToolUseContract(
         "operate-cloudflare",
         (
@@ -98,6 +142,17 @@ CONTRACTS = (
 
 LINKS = (
     SurfaceLink(
+        "manage-cloudflare-namespaces",
+        tools=(
+            "registry_list_namespaces",
+            "registry_activate",
+            "registry_status",
+            "registry_deactivate",
+        ),
+        prompts=("cloudflare-operator",),
+        skills=("cloudflare-operations",),
+    ),
+    SurfaceLink(
         "operate-cloudflare",
         tools=("cloudflare_whoami", "cloudflare_search", "cloudflare_execute"),
         prompts=("cloudflare-operator", "cloudflare-zone-administrator"),
@@ -121,4 +176,10 @@ LOCATIONS = (
     ),
 )
 
-ROLES = (BusinessRole("zone-administrator", ("operate-cloudflare",), "Runs DNS, TLS and email routing for public zones."),)
+ROLES = (
+    BusinessRole(
+        "zone-administrator",
+        ("operate-cloudflare",),
+        "Runs DNS, TLS and email routing for public zones.",
+    ),
+)
