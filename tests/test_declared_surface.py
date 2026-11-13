@@ -1,7 +1,6 @@
 """The declared upstream surface lists the provider's published tools (CONN-CLOUDFLARE-MCP-R016)."""
 
 import pytest
-
 from cloudflare_mcp.connector_contracts import CONTRACTS, LINKS, UPSTREAM_TOOLS
 
 pytestmark = pytest.mark.spec("CONN-CLOUDFLARE-MCP-R016")
@@ -23,5 +22,10 @@ def test_every_declared_tool_is_called_by_a_contract_and_linked() -> None:
     declared = {t.name for t in UPSTREAM_TOOLS}
     called = {s.tool for c in CONTRACTS for s in c.steps}
     linked = {t for link in LINKS for t in link.tools}
-    registry = {"registry_list_namespaces", "registry_activate", "registry_deactivate", "registry_status"}
+    registry = {
+        "registry_list_namespaces",
+        "registry_activate",
+        "registry_deactivate",
+        "registry_status",
+    }
     assert declared | registry == called == linked
