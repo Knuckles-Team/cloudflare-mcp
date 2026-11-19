@@ -1,4 +1,5 @@
-@prefix : <http://knuckles.team/kg#> .
+@prefix : <https://knuckles-team.github.io/ontology/connector/cloudflare#> .
+@prefix core: <https://knuckles-team.github.io/ontology/core#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
@@ -6,7 +7,7 @@
 # through rdfs:subClassOf. The pack never imports the parent ontology.
 
 :CloudflareOperation a owl:Class ;
-    rdfs:subClassOf :Concept ;
+    rdfs:subClassOf core:Concept ;
     rdfs:label "Cloudflare Operation" ;
     rdfs:comment "One Cloudflare provider operation served as a typed tool." .
 
@@ -14,4 +15,4 @@
     rdfs:label "Cloudflare related to" ;
     rdfs:comment "Links a Cloudflare operation to any core concept it acts on." ;
     rdfs:domain :CloudflareOperation ;
-    rdfs:range :Concept .
+    rdfs:range core:Concept .

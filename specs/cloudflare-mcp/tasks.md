@@ -18,3 +18,4 @@ Governing spec: [spec.md](spec.md). Design: [plan.md](plan.md). Rows: [requireme
 - [ ] T014 [US14] CONN-CLOUDFLARE-MCP-R013 Fleet onboarding.
 - [ ] T015 [US15] CONN-CLOUDFLARE-MCP-R014 Hot-path proof.
 - [ ] T016 [US16] CONN-CLOUDFLARE-MCP-R015 Served coverage.
+- [ ] T017 [US17] CONN-CLOUDFLARE-MCP-R016 Declared upstream surface.
