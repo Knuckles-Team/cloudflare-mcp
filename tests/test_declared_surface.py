@@ -1,6 +1,7 @@
 """The declared upstream surface lists the provider's published tools (CONN-CLOUDFLARE-MCP-R016)."""
 
 import pytest
+
 from cloudflare_mcp.connector_contracts import CONTRACTS, LINKS, UPSTREAM_TOOLS
 
 pytestmark = pytest.mark.spec("CONN-CLOUDFLARE-MCP-R016")
