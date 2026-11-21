@@ -21,6 +21,12 @@ Governing spec: [spec.md](spec.md).
 | T-015 | `CONN-CLOUDFLARE-MCP-R014` | Contract | `tests/integration/test_edge_journey_served.py::test_record_tls_and_mail_auth_journey` | Hot-path proof holds. |  |
 | T-016 | `CONN-CLOUDFLARE-MCP-R015` | Contract | `tests/test_coverage.py::test_served_tools_cover_upstream_with_typed_schemas` | Served coverage holds. |  |
 | T-017 | `CONN-CLOUDFLARE-MCP-R016` | Contract | `tests/test_declared_surface.py::test_declared_upstream_tools_match_the_published_list` | The declared upstream surface holds. |  |
+| T-018 | `CONN-CLOUDFLARE-MCP-R017` | Contract | `tests/test_tunnel_tools.py::test_ingress_replace_validates_catch_all_and_scope_before_upstream` | Tunnel configuration tools holds. |  |
+| T-019 | `CONN-CLOUDFLARE-MCP-R018` | Contract | `tests/test_access_tools.py::test_application_without_policy_and_open_policy_are_refused` | Access application and policy tools holds. |  |
+| T-020 | `CONN-CLOUDFLARE-MCP-R019` | Contract | `tests/test_waf_tools.py::test_rule_writes_validate_expression_and_audit_old_and_new` | WAF and rate-limit rule tools holds. |  |
+| T-021 | `CONN-CLOUDFLARE-MCP-R020` | Contract | `tests/test_turnstile_tools.py::test_secret_key_appears_only_in_the_rotate_result_and_never_in_audit` | Turnstile widget tools holds. |  |
+| T-022 | `CONN-CLOUDFLARE-MCP-R021` | Contract | `tests/test_governance.py::test_edge_write_tools_use_the_shared_guards_and_account_scope` | Edge facades share the write guards holds. |  |
+| T-023 | `CONN-CLOUDFLARE-MCP-R022` | Contract | `tests/test_connector_content.py::test_served_content_matches_the_built_wheel_contents` | The connector pack is complete and publishable holds. |  |
 
 ## Negative and boundary cases
 
